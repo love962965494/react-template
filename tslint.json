@@ -1,0 +1,35 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": false,
+    "no-debugger": true,
+    "no-empty": false,
+    "no-invalid-this": true,
+    "no-shadowed-variable": true,
+    "no-unused-expression": true,
+    "object-literal-sort-keys": false,
+    "semicolon": false,
+    "no-empty-interface": true,
+    "no-parameter-reassignment": true,
+    "no-var-requires": true,
+    "no-var-keyword": true,
+    "prefer-for-of": true,
+    "unified-signatures": true,
+    "prefer-conditional-expression": true,
+    "arrow-return-shorthand": true,
+    "class-name": true,
+    "object-literal-key-quotes": [true, "consistent-as-needed"],
+    "object-literal-shorthand": true,
+    "space-within-parens": true,
+    "promise-function-async": true,
+    "interface-name": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js",
+      "public/live2d/**/*.js"
+    ]
+  }
+}
