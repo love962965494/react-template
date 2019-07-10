@@ -1,5 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "apis/*": ["src/apis/*"],
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "routes/*": ["src/routes/*"],
+      "styles/*": ["src/styles/*"],
+      "utils/*": ["src/utils/*"],
+      "stores/*": ["src/stores/*"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -22,6 +33,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true
   },
   "include": [
     "src"

@@ -36,57 +36,7 @@ const RouteConfig: IRouteConfig = {
       id: '01',
       path: '/app/dashboard',
       title: '首页',
-      component: importModule('dashboard/index')
-    },
-    {
-      id: '02',
-      path: '/app/transactionRecords',
-      title: '交易记录',
-      component: importModule('dashboard/index'),
-      children: [
-        {
-          id: '021',
-          path: '/transactionOrders',
-          title: '交易订单',
-          component: importModule('dashboard/index')
-        },
-        {
-          id: '022',
-          path: '/refundOrders',
-          title: '退款订单',
-          component: importModule('dashboard/index')
-        },
-        {
-          id: '023',
-          path: '/withdrawalOrders',
-          title: '提现订单',
-          component: importModule('dashboard/index')
-        }
-      ]
-    },
-    {
-      id: '03',
-      path: '/app/marketingManage',
-      title: '营销管理',
-      component: importModule('dashboard/index')
-    },
-    {
-      id: '04',
-      path: '/app/fundSettlement',
-      title: '资金结算',
-      component: importModule('dashboard/index')
-    },
-    {
-      id: '05',
-      path: '/app/merchantsInfo',
-      title: '商户资料',
-      component: importModule('dashboard/index')
-    },
-    {
-      id: '06',
-      path: '/app/merchantsAccess',
-      title: '商户接入',
-      component: importModule('dashboard/index')
+      component: importModule('dashboard/Dashboard')
     }
   ],
   nonMenus: []

@@ -13,20 +13,20 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(
-  (config) => {
+  config => {
     if (getToken()) {
       config.headers.Authorization = 'sanitation' + getToken()
     }
 
     return config
   },
-  (error) => {
+  error => {
     return handleError(error)
   }
 )
 
 service.interceptors.response.use(
-  (response) => {
+  response => {
     if (response && response.data) {
       if (+response.data.code === 10000) {
         if (getToken()) {
@@ -40,9 +40,7 @@ service.interceptors.response.use(
     }
     return response
   },
-  (error) => {
-    return handleRequestError(error)
-  }
+  error => handleRequestError(error)
 )
 
 /**
@@ -51,7 +49,7 @@ service.interceptors.response.use(
  * @param {*} error
  * @returns
  */
-const handleRequestError = (error: any) => {
+const handleRequestError = async (error: any) => {
   let resolvedError = cloneDeep(error)
 
   // error is null when response.data.data === null
@@ -80,9 +78,15 @@ const handleRequestError = (error: any) => {
  * @param {AxiosRequestConfig} requestConfig
  * @returns
  */
-const sponsorRequest = (requestType: string, requestConfig?: AxiosRequestConfig) => {
+const sponsorRequest = (
+  requestType: string,
+  requestConfig?: AxiosRequestConfig
+) => {
   return (url: string, ...params: any[]) => {
-    const requestParams = params.reduce((paramJson, param) => Object.assign(paramJson, param), {})
+    const requestParams = params.reduce(
+      (paramJson, param) => Object.assign(paramJson, param),
+      {}
+    )
     const paramsType = requestType === 'get' ? 'params' : 'data'
 
     const config = Object.assign(
@@ -93,7 +97,7 @@ const sponsorRequest = (requestType: string, requestConfig?: AxiosRequestConfig)
         [paramsType]: requestParams,
         paramsSerializer: (serializaParmas: any) =>
           qs.stringify(serializaParmas, {
-            serializeDate: (date) => requestDateFormat(date)
+            serializeDate: date => requestDateFormat(date)
           })
       },
       requestConfig
@@ -111,7 +115,9 @@ const sponsorRequest = (requestType: string, requestConfig?: AxiosRequestConfig)
  * @param {(...params: any[]) => Promise<any>} sponsorRequestByType
  * @returns
  */
-const handleRepeatRequest = (sponsorRequestByType: (url: string, ...params: any[]) => Promise<any>) => {
+const handleRepeatRequest = (
+  sponsorRequestByType: (url: string, ...params: any[]) => Promise<any>
+) => {
   let hasSponsor = false
   let lastUrl = ''
 
@@ -249,14 +255,16 @@ const requestDownloadExcel = async (url: string, ...params: any[]) => {
         window.URL.revokeObjectURL(url)
       }, 0)
     }
-    
+
     return Promise.resolve({ data: 'success' })
   } catch (error) {
     return handleRequestError(error)
   }
 }
 
-const requestDownloadExcelWithNoRepeat = handleRepeatRequest(requestDownloadExcel)
+const requestDownloadExcelWithNoRepeat = handleRepeatRequest(
+  requestDownloadExcel
+)
 
 /**
  * 请求下载文件方法

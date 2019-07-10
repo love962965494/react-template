@@ -1,65 +1,27 @@
-import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import React, { useContext } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
-import LoginComponent from '../../components/login/Login'
-import { setToken } from '../../utils/token'
+import { LoginStoreContext } from 'stores/login'
+import { setToken } from 'utils/token'
+import { WrappedLoginForm } from './components/Login'
 
-export interface ILoginFormFields {
-  username: {
-    value: string
-  }
-  password: {
-    value: string
-  }
-}
+const Login = observer((props: RouteComponentProps) => {
+  const store = useContext(LoginStoreContext)
+  const { handleFieldsChange } = store
+  const { fields } = store.state
 
-interface IOwnStateProps {
-  fields: ILoginFormFields
-}
-
-class Login extends Component<RouteComponentProps> {
-  public state: IOwnStateProps = {
-    fields: {
-      username: {
-        value: '12345678'
-      },
-      password: {
-        value: '12345678'
-      }
-    }
-  }
-
-  public handleFormFieldsChange = (changeFields: object) => {
-    this.setState((prevState: IOwnStateProps) => {
-      return {
-        fields: { ...prevState.fields, ...changeFields }
-      }
-    })
-  }
-
-  public handleLoginBtnClick = () => {
-    // const { username, password } = this.state.fields
+  const handleLoginBtnClick = () => {
     setToken('测试')
-    this.props.history.push('/')
-    // loginApi
-    //   .login({
-    //     username: username.value,
-    //     password: password.value
-    //   })
-    //   .then((res) => {
-    //     setToken(res.token)
-    //     this.props.history.push('/')
-    //   })
-    //   .catch((error) => {
-    //     handleError(error)
-    //   })
+    props.history.push('/')
   }
 
-  public render () {
-    const { fields } = this.state
-    return (
-      <LoginComponent {...fields} onChange={this.handleFormFieldsChange} onLoginBtnClick={this.handleLoginBtnClick} />
-    )
-  }
-}
+  return (
+    <WrappedLoginForm
+      {...fields}
+      onChange={handleFieldsChange}
+      onLoginBtnClick={handleLoginBtnClick}
+    />
+  )
+})
 
-export default withRouter(Login)
+export const LoginWithRouter = withRouter(Login)

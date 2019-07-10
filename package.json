@@ -148,6 +148,11 @@
       "react-app"
     ]
   },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true
+  },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "tslint --project tsconfig.json -c tslint.commit.json --fix",

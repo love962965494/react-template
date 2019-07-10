@@ -1,0 +1,24 @@
+.form-title {
+  margin-bottom: 4rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #60a8fa;
+}
+
+.sign-up {
+  font-size: 1.2rem;
+  color: #0080ff;
+
+  &:hover {
+    color: #0080ff;
+  }
+}
+
+.forget-password {
+  font-size: 1.2rem;
+  color: #f3961d;
+
+  &:hover {
+    color: #f3961d;
+  }
+}

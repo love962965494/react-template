@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Layout from './Layout'
+import Layout from './layout/Layout'
 
 class App extends Component {
-  public render () {
+  public render() {
     return (
       <div className="App">
         <Layout />

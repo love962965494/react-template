@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5714rem;
+  box-shadow: 0px 0px 10px #ccc;
+}
+
+.logo {
+  margin-right: 5em;
+}
+
+.company {
+  margin-right: 3em;
+
+  > svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+
+  > span {
+    vertical-align: middle;
+  }
+}
+
+.user {
+  > svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+
+  > span {
+    vertical-align: middle;
+  }
+}
